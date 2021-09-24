@@ -1,1 +1,1 @@
-print("lnx")
+print("ln=sadasx")
