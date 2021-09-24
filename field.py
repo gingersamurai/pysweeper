@@ -96,7 +96,6 @@ def make_act(x, y, act):
             return True
 
 def dfs(y, x):
-    print("dfs: ", x, y, row_cnt)
     field_used[y][x] = True
     if field_bomb_near[y][x] > 0:
         return
