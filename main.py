@@ -4,7 +4,15 @@ import field
 def game():
     while True:
         field.print_field()
-        nx, ny, act = map(int, input("[x, y, act(1 - flag, 2 - use)]:").split())
+        nx, ny, act = map(int, input("введите x y act.\n\
+        (при х=-1 вы сохраните игру сохранение y)\n\
+        (при х=-2 вы загрузите сохранение у)").split())
+        if(nx == -1):
+            field.save(ny)
+            continue
+        if nx == -2:
+            field.load(ny)
+            continue
         res = field.make_act(nx, ny, act)
         if not res:
             break
