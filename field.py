@@ -10,7 +10,7 @@ field_user_see = []
 # 0 close 1 flag 2 used
 field_bomb_near = []
 field_used = []
-csline = '-' * 50 + '\n'
+csline = '-' * 50
 
 
 def gen(user_row_cnt, user_str_cnt, user_bomb_cnt):

@@ -6,34 +6,46 @@ def game():
         print(field.csline)
         field.print_field()
         print(field.csline)
-        nx, ny, act = map(int, input('введите x y act\n').split())
+        nx, ny, act = input('введите x y act\n').split()
+        nx, ny = int(nx) - 1, int(ny) - 1
         print(field.csline)
-        res = field.make_act(nx, ny, act)
-        if not res:
-            break
-        if field.check_win():
-            print("победа")
-            break
-        field.print_field()
-        print(field.csline)
-        res = int(input("""
-если желаете сохранить игру, нажмите 1
-иначе нажмите 0
-"""))
-        print(field.csline)
-        if res == 1:
+        if act == 'open':
+            act = 2
+        elif act == 'flag':
+            act = 1
+        elif act == 'save':
             field.show_saves()
             print(field.csline)
             num = int(input("под каким другим номером вы хотите сохраниться? "))
             field.save(num)
             print("сохранено")
             print(field.csline)
+            continue
+        res = field.make_act(nx, ny, act)
+        if not res:
+            break
+        if field.check_win():
+            print("победа")
+            break
+        # field.print_field()
+        # print(field.csline)
+            
         
        
         
     
 print(field.csline)
 print("САПЕР (создал ginger.samurai)")
+print("""
+управление:
+в игре оправляйте команды вида [x y act]
+x - номер столбца слева направо начиная с 1
+y - номер строки сверху вниз начиная с 1
+act - вид действия open: открыть клетку, flag: поставить флаг, save: сохраниться
+примеры:    2 3 open открыть клетку на 2 столбце 3 строке
+            1 4 flag поставить флаг на 1 столбце 4 строке
+            5 6 save сохраниться (первые 2 цифры роли не играют)
+""")
 print(field.csline)
 print("""
 нажмите 1 чтобы начать новую игру
