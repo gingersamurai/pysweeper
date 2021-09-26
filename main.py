@@ -3,6 +3,7 @@ import field
 
 def game():
     while True:
+        
         field.print_field()
         nx, ny, act = map(int, input("введите x y act.\n\
         (при х=-1 вы сохраните игру сохранение y)\n\
@@ -15,6 +16,9 @@ def game():
             continue
         res = field.make_act(nx, ny, act)
         if not res:
+            break
+        if field.check_win():
+            print("победа")
             break
     
     
