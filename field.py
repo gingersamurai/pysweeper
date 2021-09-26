@@ -1,5 +1,6 @@
 import random
 
+
 save_cnt = 0
 row_cnt = int()
 str_cnt = int()
@@ -9,6 +10,7 @@ field_user_see = []
 # 0 close 1 flag 2 used
 field_bomb_near = []
 field_used = []
+csline = '-' * 50 + '\n'
 
 
 def gen(user_row_cnt, user_str_cnt, user_bomb_cnt):
@@ -28,6 +30,7 @@ def gen(user_row_cnt, user_str_cnt, user_bomb_cnt):
     field_used = [[0 for i in range(row_cnt)] for j in range(str_cnt)]
     gen_bomb_near()
 
+
 def gen_bombs():
     pret = []
     res = []
@@ -39,6 +42,7 @@ def gen_bombs():
         res.append(res_now)
         pret.pop(pret.index(res_now))
     return res
+
 
 def gen_bomb_near():
     global field_bomb_near
@@ -66,7 +70,9 @@ def dbg_print():
         print(i)
     print()
 
+
 def print_field():
+    print("ваше поле:\n")
     for y in range(str_cnt):
         for x in range(row_cnt):
             if field_user_see[y][x] == 0:
@@ -80,6 +86,7 @@ def print_field():
                     print(field_bomb_near[y][x], end=" ")
         print()
     print()
+
 
 def make_act(x, y, act):
     if act == 1:
@@ -106,6 +113,7 @@ def make_act(x, y, act):
             if field_bomb_near[y][x] == 0:
                 dfs(y, x)
             return True
+
 
 def dfs(y, x):
     if field_user_see[y][x] == 1:
@@ -174,6 +182,7 @@ def save(save_num):
     save_file.write('\n')
     save_file.close()
 
+
 def load(save_num):
     global save_cnt
     global row_cnt
@@ -212,7 +221,7 @@ def load(save_num):
 
 
 def show_saves():
-    print("saves:")
+    print("имеются сохранения:")
     my_saves = open("my_saves.txt")
     for i in my_saves:
         print(i, end="")
