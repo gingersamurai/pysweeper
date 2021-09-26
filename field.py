@@ -148,7 +148,7 @@ def save(save_num):
     my_saves = open("my_saves.txt", 'a')
     my_saves.write(f'{save_num}\n')
     my_saves.close()
-    save_file = open(f's{save_num}.txt', 'x')
+    save_file = open(f'saves/s{save_num}.txt', 'x')
     save_file.write(f'{row_cnt}\n')
     save_file.write(f'{str_cnt}\n')
     save_file.write(f'{bomb_cnt}\n')
@@ -212,6 +212,7 @@ def load(save_num):
 
 
 def show_saves():
+    print("saves:")
     my_saves = open("my_saves.txt")
     for i in my_saves:
         print(i, end="")
