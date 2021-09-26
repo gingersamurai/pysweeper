@@ -156,7 +156,7 @@ def save(save_num):
     my_saves = open("my_saves.txt", 'a')
     my_saves.write(f'{save_num}\n')
     my_saves.close()
-    save_file = open(f'saves/s{save_num}.txt', 'x')
+    save_file = open(f'saves/s_{save_num}.txt', 'x')
     save_file.write(f'{row_cnt}\n')
     save_file.write(f'{str_cnt}\n')
     save_file.write(f'{bomb_cnt}\n')
@@ -192,7 +192,7 @@ def load(save_num):
     global field_user_see
     global field_used
     global bombs
-    save_file = open(f'saves/s{save_num}.txt')
+    save_file = open(f'saves/s_{save_num}.txt')
     row_cnt = int(save_file.readline())
     str_cnt = int(save_file.readline())
     bomb_cnt = int(save_file.readline())

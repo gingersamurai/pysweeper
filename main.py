@@ -16,7 +16,7 @@ def game():
         elif act == 'save':
             field.show_saves()
             print(field.csline)
-            num = int(input("под каким другим номером вы хотите сохраниться? "))
+            num = input("под каким другим названием вы хотите сохраниться? ")
             field.save(num)
             print("сохранено")
             print(field.csline)
@@ -72,7 +72,7 @@ if mode == 1:
 else:
     field.show_saves()
     print(field.csline)
-    save_num = int(input("выберите сохранение\n"))
+    save_num = input("выберите сохранение\n")
     print(field.csline)
     field.load(save_num)
     game()
