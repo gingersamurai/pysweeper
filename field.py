@@ -162,7 +162,7 @@ def save(save_num):
     save_file.write(f'{bomb_cnt}\n')
     for i in field_bomb_near:
         for j in i:
-            save_file.write(f'{j} ')
+            save_file.write(f'{encrypt(j)} ')
         save_file.write('\n')
     save_file.write('\n')
     for i in field_user_see:
@@ -177,7 +177,7 @@ def save(save_num):
     save_file.write('\n')
     for i in bombs:
         for j in i:
-            save_file.write(f'{j} ')
+            save_file.write(f'{encrypt(j)} ')
         save_file.write('\n')
     save_file.write('\n')
     save_file.close()
@@ -199,7 +199,7 @@ def load(save_num):
     # print(row_cnt, str_cnt, bomb_cnt)
     field_bomb_near.clear()
     for i in range(str_cnt):
-        field_bomb_near.append(list(map(int, save_file.readline().split())))
+        field_bomb_near.append(list(map(decrypt, save_file.readline().split())))
     # print(field_bomb_near)
     field_user_see.clear()
     save_file.readline()
@@ -214,7 +214,7 @@ def load(save_num):
     bombs.clear()
     save_file.readline()
     for i in range(bomb_cnt):
-        y, x = map(int, save_file.readline().split())
+        y, x = map(decrypt, save_file.readline().split())
         bombs.append([y, x])
     # print(bombs)
     save_file.close()
@@ -227,3 +227,11 @@ def show_saves():
         print(i, end="")
     print()
     my_saves.close()
+
+def encrypt(x):
+    x = int(x)
+    return (8806 + x)*1000 + random.randint(1, 999)
+
+def decrypt(x):
+    x = int(x)
+    return (x // 1000) - 8806

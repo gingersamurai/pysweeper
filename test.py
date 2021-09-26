@@ -1,3 +1,4 @@
-f = open("saves/test.txt")
-x, y = map(int, f.readline().split())
-print(x, y)
+import field
+pas = -1
+sec_pas = field.encrypt(pas)
+print(sec_pas, field.decrypt(sec_pas))
