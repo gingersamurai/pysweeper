@@ -23,14 +23,12 @@ mode = int(input("выберите режим. Введие число от 1 д
 if mode == 1:
     bomb_cnt = int(input("введите количество мин:"))
     field.gen(5, 5, bomb_cnt)
-    field.dbg_print()
     game()
 elif mode == 2:
     str_cnt = int(input("введите длину поля:"))
     row_cnt = int(input("введите ширину поля"))
     bomb_cnt = int(input("введите количество бомб:"))
     field.gen(row_cnt, str_cnt, bomb_cnt)
-    field.dbg_print()
     game()
 elif mode == 3:
     str_cnt = int(input("введите длину поля:"))

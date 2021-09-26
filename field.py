@@ -74,7 +74,10 @@ def print_field():
             elif field_user_see[y][x] == 1:
                 print('F', end=" ")
             else:
-                print(field_bomb_near[y][x], end=" ")
+                if(field_bomb_near[y][x] == 0):
+                    print('.', end=" ")
+                else:
+                    print(field_bomb_near[y][x], end=" ")
         print()
     print()
 
@@ -92,6 +95,8 @@ def make_act(x, y, act):
                 for x in range(row_cnt):
                     if field_bomb_near[y][x] == -1:
                         print('B', end=" ")
+                    elif field_bomb_near[y][x] == 0:
+                        print('.', end=" ")
                     else: 
                         print(field_bomb_near[y][x], end=" ")
                 print()
@@ -103,10 +108,12 @@ def make_act(x, y, act):
             return True
 
 def dfs(y, x):
+    if field_user_see[y][x] == 1:
+        return
     field_used[y][x] = 1
+    field_user_see[y][x] = 2
     if field_bomb_near[y][x] > 0:
         return
-    field_user_see[y][x] = 2
     if y > 0 and not field_used[y-1][x]:
         dfs(y-1, x)
     if x > 0 and not field_used[y][x-1]:
@@ -115,6 +122,18 @@ def dfs(y, x):
         dfs(y+1, x)
     if x+1 < row_cnt and not field_used[y][x+1]:
         dfs(y, x+1)
+
+
+def check_win():
+    for y in range(str_cnt):
+        for x in range(row_cnt):
+            if field_user_see[y][x] == 0:
+                return False
+            if field_user_see[y][x] == 1:
+                if not [y, x] in bombs:
+                    return False 
+    return True
+
 
 def save(save_num):
     global save_cnt
