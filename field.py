@@ -145,6 +145,9 @@ def save(save_num):
     global field_used
     global bombs
     save_cnt += 1
+    my_saves = open("my_saves.txt", 'a')
+    my_saves.write(f'{save_num}\n')
+    my_saves.close()
     save_file = open(f's{save_num}.txt', 'x')
     save_file.write(f'{row_cnt}\n')
     save_file.write(f'{str_cnt}\n')
@@ -169,6 +172,7 @@ def save(save_num):
             save_file.write(f'{j} ')
         save_file.write('\n')
     save_file.write('\n')
+    save_file.close()
 
 def load(save_num):
     global save_cnt
@@ -179,29 +183,37 @@ def load(save_num):
     global field_user_see
     global field_used
     global bombs
-    save_file = open(f's{save_num}.txt')
+    save_file = open(f'saves/s{save_num}.txt')
     row_cnt = int(save_file.readline())
     str_cnt = int(save_file.readline())
     bomb_cnt = int(save_file.readline())
-    print(row_cnt, str_cnt, bomb_cnt)
+    # print(row_cnt, str_cnt, bomb_cnt)
     field_bomb_near.clear()
     for i in range(str_cnt):
         field_bomb_near.append(list(map(int, save_file.readline().split())))
-    print(field_bomb_near)
+    # print(field_bomb_near)
     field_user_see.clear()
     save_file.readline()
     for i in range(str_cnt):
         field_user_see.append(list(map(int, save_file.readline().split())))
-    print(field_user_see)
+    # print(field_user_see)
     field_used.clear()
     save_file.readline()
     for i in range(str_cnt):
         field_used.append(list(map(int, save_file.readline().split())))
-    print(field_used)
+    # print(field_used)
     bombs.clear()
     save_file.readline()
     for i in range(bomb_cnt):
         y, x = map(int, save_file.readline().split())
         bombs.append([y, x])
-    print(bombs)
-    
+    # print(bombs)
+    save_file.close()
+
+
+def show_saves():
+    my_saves = open("my_saves.txt")
+    for i in my_saves:
+        print(i, end="")
+    print()
+    my_saves.close()
